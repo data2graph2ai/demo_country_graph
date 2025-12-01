@@ -122,8 +122,61 @@ This gives a clear, data-driven way to answer:
 | Netherlands                          | United Kingdom              | sea         |  0.721  | gnn         |
 | Oman                                 | Pakistan                    | sea         |  0.732  | gnn         |
 
+### Where LLM backs off but LLM+GNN insists “these are neighbors”
 
-### Why it’s reusable
+Some of the most interesting cases are **border pairs with low LLM similarity**.  
+The text model is distracted by politics, history, or asymmetry, while the GNN pays attention to the *graph around them* and pulls them closer.
+
+#### 1. Mexico – United States (land)
+
+- **LLM view (low sim_llm):**  
+  The Factbook pages emphasize very different stories: a large global power vs. an emerging economy; migration, drugs, security, trade disputes.  
+  The shared border is only one theme among many, so their **text embeddings drift apart**.
+- **LLM+GNN view (higher sim_gnn):**  
+  In the border graph, they form **one of the most important land edges on the continent**, with Canada and Mexico as the US’s only land neighbors.  
+  Training on land borders forces the GNN to treat this edge as structurally important, so **their graph-aware embeddings move closer together** than the LLM alone suggests.
+
+#### 2. Georgia – Turkey and Syria – Turkey (both)
+
+- **LLM view (low sim_llm):**  
+  Text highlights very different identities: NATO member vs. post-Soviet state; EU candidate vs. conflict zones, sanctions, civil war.  
+  The narrative focuses on **political blocks and conflicts**, which pushes their text vectors apart.
+- **LLM+GNN view (higher sim_gnn):**  
+  The graph doesn’t care about alliances; it sees a **continuous corridor of neighbors** linking the Caucasus, Anatolia, and the Levant.  
+  Because Turkey is a central hub in that corridor, the GNN learns that Georgia–Turkey and Syria–Turkey are **structurally strong edges** and tightens their embeddings accordingly.
+
+#### 3. India – Nepal (land)
+
+- **LLM view (low sim_llm):**  
+  India’s page is dominated by scale, internal politics, global role, and regional rivalries.  
+  Nepal’s page focuses on Himalayan geography, tourism, and development challenges.  
+  They share a huge open border, but the **text spends more time on how different they are**.
+- **LLM+GNN view (higher sim_gnn):**  
+  In the graph, India and Nepal are **deeply entangled neighbors** along the Himalayas, with many shared border segments and overlapping neighborhoods.  
+  Link prediction “sees” that pattern and **pulls them closer than the text alone would**.
+
+#### 4. Caribbean islands vs Venezuela (sea)
+
+- **LLM view (low sim_llm):**  
+  Small island states like **Saint Kitts and Nevis, Saint Vincent and the Grenadines, Saint Lucia** are described as independent micro-economies and tourist destinations.  
+  Venezuela’s page is dominated by oil, internal politics, and regional alliances.  
+  The maritime connection is just a line or two, so **their text similarity ends up near the bottom of our list**.
+- **LLM+GNN view (higher sim_gnn):**  
+  In the sea-border graph, several of these islands share **the same mainland neighbor: Venezuela**.  
+  From the GNN’s perspective, they form a **small maritime neighborhood around the same hub**, so the model increases their similarity to Venezuela and to each other.
+
+#### 5. French Southern and Antarctic Lands – Mozambique (sea)
+
+- **LLM view (very low sim_llm):**  
+  One is an almost uninhabited French territory in the southern Indian Ocean; the other is a large East African state.  
+  Text makes them look almost unrelated.
+- **LLM+GNN view (higher sim_gnn):**  
+  On the sea-border graph, these islands sit **right off Mozambique’s coast**.  
+  The GNN learns that, structurally, they are neighbors in the same maritime region and **corrects the LLM’s intuition by pulling them closer**.
+
+
+
+## Why it’s reusable
 
 While the demo focuses on **countries + borders + Factbook**, the method is generic:
 
