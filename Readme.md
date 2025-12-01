@@ -1,3 +1,72 @@
+## What this project does
+
+This project is a small, concrete demo of a bigger idea:
+
+> **Compare what we learn from pure LLM embeddings vs. what we learn from LLM + GNN link prediction on a graph.**
+
+We use a **country borders graph** and **CIA World Factbook** text as a case study, but the pattern applies to any domain where you have:
+
+- Text → encoded by an LLM / sentence encoder  
+- Structure → encoded as a graph with edges between entities  
+- A need to see how **LLM-only** vs **LLM+GNN** change the “map” of similarities between items
+
+### Case study: countries as a graph
+
+In this demo:
+
+- **Nodes** = countries  
+- **Edges** = land and sea borders between countries  
+- **Node text** = cleaned “Background” + “Geography” sections from the CIA Factbook for each country
+
+From that, we build two kinds of embeddings for each country:
+
+1. **LLM embeddings**  
+   - We embed the Factbook text with an LLM/sentence encoder.  
+   - We get a vector for each country that reflects its background + geography text.
+
+2. **LLM + GNN embeddings**  
+   - We treat the borders as a graph.  
+   - We use the LLM embeddings as initial node features.  
+   - We train a **GNN link prediction model** (e.g., GraphSAGE) to predict which country pairs have a land/sea border.  
+   - After training, we take the GNN’s hidden vectors as **graph-aware embeddings** (LLM + structure).
+
+### What we compare
+
+For every pair of countries, we compute:
+
+- **Cosine similarity in LLM space** → `sim_llm`
+- **Cosine similarity in GNN space** → `sim_gnn`
+
+Then we:
+
+- Compare `sim_llm` vs `sim_gnn` across all pairs
+- Break results down by **border type** (land / sea / both / none)
+- Look at:
+  - Pairs that are similar in text but not in graph space  
+  - Pairs that the GNN pulls together because of shared neighbors / structural patterns  
+  - Where “LLM only” and “LLM + GNN” strongly disagree
+
+This gives a clear, data-driven way to answer:
+
+- What does the **LLM alone** think is similar?  
+- How does that picture change once we respect **graph structure** and train for a specific task (link prediction)?
+
+### Why it’s reusable
+
+While the demo focuses on **countries + borders + Factbook**, the method is generic:
+
+- Replace **countries** with users, products, companies, documents, accounts, etc.
+- Replace **borders** with follows, purchases, trades, citations, co-authorship, shared IP, etc.
+- Replace **Factbook text** with descriptions, bios, reviews, profiles, tickets, metadata, or any text you already feed into an LLM.
+
+The pipeline stays the same:
+
+1. Build **LLM embeddings** for entities from text.
+2. Build a **graph** connecting entities with edges that matter for your domain.
+3. Train a **GNN link prediction model** on that graph.
+4. Extract **GNN embeddings** and compare **LLM vs**
+
+
 ## Notebooks
 
 - **01_country_graph_setup.ipynb**  
