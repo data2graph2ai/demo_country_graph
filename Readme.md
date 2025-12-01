@@ -53,6 +53,41 @@ This gives a clear, data-driven way to answer:
 - 
 ### Compare Results
 
+#### Country Pairs with highest LLM cosine similarities
+
+| country1    | country2                    | border_type | sim_llm | vector_type |
+|------------|-----------------------------|-------------|---------|-------------|
+| North Korea| South Korea                 | both        |  0.987  | llm         |
+| Saint Martin| Sint Maarten               | both        |  0.947  | llm         |
+| Croatia    | Slovenia                    | both        |  0.811  | llm         |
+| India      | Pakistan                    | both        |  0.784  | llm         |
+| Czechia    | Slovakia                    | land        |  0.859  | llm         |
+| Kenya      | Tanzania                    | land        |  0.820  | llm         |
+| Estonia    | Latvia                      | land        |  0.816  | llm         |
+| Croatia    | Serbia                      | land        |  0.814  | llm         |
+| Guam       | Northern Mariana Islands    | sea         |  0.855  | llm         |
+| Guernsey   | Jersey                      | sea         |  0.848  | llm         |
+| Barbados   | Trinidad and Tobago         | sea         |  0.734  | llm         |
+| China      | Taiwan                      | sea         |  0.717  | llm         |
+
+
+#### Country Pairs with highest LLM + GNN cosine similarities
+
+| country1               | country2         | border_type | sim_gnn | vector_type |
+|------------------------|------------------|-------------|---------|-------------|
+| Saint Martin           | Sint Maarten     | both        |  1.000  | gnn         |
+| Croatia                | Slovenia         | both        |  0.998  | gnn         |
+| Costa Rica             | Panama           | both        |  0.998  | gnn         |
+| Algeria                | Tunisia          | both        |  0.997  | gnn         |
+| Bosnia and Herzegovina | Croatia          | land        |  0.999  | gnn         |
+| Bosnia and Herzegovina | Serbia           | land        |  0.999  | gnn         |
+| Croatia                | Serbia           | land        |  0.999  | gnn         |
+| Albania                | North Macedonia  | land        |  0.998  | gnn         |
+| Colombia               | Nicaragua        | sea         |  0.999  | gnn         |
+| Niue                   | Tonga            | sea         |  0.998  | gnn         |
+| Samoa                  | Tonga            | sea         |  0.998  | gnn         |
+| Cook Islands           | Kiribati         | sea         |  0.998  | gnn         |
+
 #### Country Pairs with lowest LLM cosine similarities
 
 | country1                               | country2      | border_type | sim_llm | vector_type |
@@ -73,7 +108,7 @@ This gives a clear, data-driven way to answer:
 #### Country Pairs with lowest LLM + GNN cosine similarities
 
 | country1                             | country2                    | border_type | sim_gnn | vector_type |
-|--------------------------------------|-----------------------------|-------------|--------:|-------------|
+|--------------------------------------|-----------------------------|-------------|---------|-------------|
 | Israel                               | West Bank                   | both        |  0.665  | gnn         |
 | Gaza, Gaza Strip                     | Israel                      | both        |  0.665  | gnn         |
 | India                                | Pakistan                    | both        |  0.864  | gnn         |
