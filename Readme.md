@@ -1,4 +1,4 @@
-# Country Border Graph Demo
+## Country Border Graph Demo
 
 This repo contains a small end-to-end demo that builds a **country graph** from tabular + text data and feeds it into a **Graph Neural Network (GNN) / DGL** workflow.
 
@@ -12,7 +12,7 @@ The main notebook walks through loading the data, turning it into a DGL graph, a
 
 ---
 
-## Project structure
+### Project structure
 
 ```text
 .
