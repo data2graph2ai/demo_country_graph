@@ -50,6 +50,43 @@ This gives a clear, data-driven way to answer:
 
 - What does the **LLM alone** think is similar?  
 - How does that picture change once we respect **graph structure** and train for a specific task (link prediction)?
+- 
+### Compare Results
+
+#### Country Pairs with lowest LLM cosine similarities
+
+| country1                               | country2      | border_type | sim_llm | vector_type |
+|----------------------------------------|---------------|-------------|---------|-------------|
+| Georgia                                | Turkey        | both        |  0.330  | llm         |
+| Syria                                  | Turkey        | both        |  0.389  | llm         |
+| Romania                                | Ukraine       | both        |  0.394  | llm         |
+| Mozambique                             | South Africa  | both        |  0.425  | llm         |
+| Mexico                                 | United States | land        |  0.191  | llm         |
+| Afghanistan                            | China         | land        |  0.299  | llm         |
+| Eswatini                               | South Africa  | land        |  0.314  | llm         |
+| India                                  | Nepal         | land        |  0.315  | llm         |
+| French Southern and Antarctic Lands    | Mozambique    | sea         |  0.178  | llm         |
+| Saint Kitts and Nevis                  | Venezuela     | sea         |  0.184  | llm         |
+| Saint Vincent and the Grenadines       | Venezuela     | sea         |  0.188  | llm         |
+| Saint Lucia                            | Venezuela     | sea         |  0.207  | llm         |
+
+#### Country Pairs with lowest LLM + GNN cosine similarities
+
+| country1                             | country2                    | border_type | sim_gnn | vector_type |
+|--------------------------------------|-----------------------------|-------------|--------:|-------------|
+| Israel                               | West Bank                   | both        |  0.665  | gnn         |
+| Gaza, Gaza Strip                     | Israel                      | both        |  0.665  | gnn         |
+| India                                | Pakistan                    | both        |  0.864  | gnn         |
+| Egypt                                | Libya                       | both        |  0.880  | gnn         |
+| Egypt                                | West Bank                   | land        |  0.621  | gnn         |
+| Egypt                                | Gaza, Gaza Strip            | land        |  0.621  | gnn         |
+| Jordan                               | West Bank                   | land        |  0.655  | gnn         |
+| Gaza, Gaza Strip                     | Jordan                      | land        |  0.655  | gnn         |
+| Canada                               | Saint Pierre and Miquelon   | sea         |  0.578  | gnn         |
+| French Southern and Antarctic Lands  | Mozambique                  | sea         |  0.710  | gnn         |
+| Netherlands                          | United Kingdom              | sea         |  0.721  | gnn         |
+| Oman                                 | Pakistan                    | sea         |  0.732  | gnn         |
+
 
 ### Why it’s reusable
 
