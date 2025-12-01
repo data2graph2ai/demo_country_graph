@@ -7,7 +7,7 @@ This project is a small, concrete demo of a bigger idea:
 We use a **country borders graph** and **CIA World Factbook** text as a case study, but the pattern applies to any domain where you have:
 
 - Text → encoded by an LLM / sentence encoder  
-- Structure → encoded as a graph with edges between entities  
+- Structure → encoded as pre-final vectors from GNN Link Prediction model graph   
 - A need to see how **LLM-only** vs **LLM+GNN** change the “map” of similarities between items
 
 ### Case study: countries as a graph
@@ -21,13 +21,13 @@ In this demo:
 From that, we build two kinds of embeddings for each country:
 
 1. **LLM embeddings**  
-   - We embed the Factbook text with an LLM/sentence encoder.  
+   - We embed the CIA Factbook text with an LLM/sentence encoder.  
    - We get a vector for each country that reflects its background + geography text.
 
 2. **LLM + GNN embeddings**  
-   - We treat the borders as a graph.  
+   - We treat the borders as graph edges.  
    - We use the LLM embeddings as initial node features.  
-   - We train a **GNN link prediction model** (e.g., GraphSAGE) to predict which country pairs have a land/sea border.  
+   - We train a **GNN link prediction model** (e.g., GraphSAGE).  
    - After training, we take the GNN’s hidden vectors as **graph-aware embeddings** (LLM + structure).
 
 ### What we compare
@@ -35,7 +35,7 @@ From that, we build two kinds of embeddings for each country:
 For every pair of countries, we compute:
 
 - **Cosine similarity in LLM space** → `sim_llm`
-- **Cosine similarity in GNN space** → `sim_gnn`
+- **Cosine similarity in LLM+GNN space** → `sim_gnn`
 
 Then we:
 
