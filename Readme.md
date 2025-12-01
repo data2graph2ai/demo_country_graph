@@ -212,4 +212,3 @@ The pipeline stays the same:
 
 - **05_country_results.ipynb**  
   Loads both embedding tables (LLM and GNN), aligns them by ISO3, and computes pairwise cosine similarities in each space. Compares **LLM vs GNN similarity** for every country pair, breaks results down by border type (land / sea / both / none), and inspects top/bottom pairs and where the two spaces disagree most.
-
