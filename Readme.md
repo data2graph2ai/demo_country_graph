@@ -1,3 +1,10 @@
+Compare what an LLM “thinks” about your data vs what changes when you add graph structure and a GNN.
+
+This repo is a reusable template to:
+- encode text with an LLM/sentence encoder,
+- fuse it with graph structure via GNN link prediction,
+- and compare LLM-only vs LLM+GNN similarity maps on any dataset with nodes + edges.
+
 ## What This Project Does
 
 This project is a small, practical prototype that compares two approaches to analyzing data:
