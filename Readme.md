@@ -1,4 +1,6 @@
-Compare what an LLM “thinks” about your data vs what changes when you add graph structure and a GNN.
+# LLM vs Graph AI: Structure-Aware Similarity Prototype
+
+This repo compares what an LLM “thinks” about your data vs what changes when you add graph structure and a GNN.
 
 This repo is a reusable template to:
 - encode text with an LLM/sentence encoder,
