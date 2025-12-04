@@ -1,14 +1,23 @@
-## What this project does
+## What This Project Does
 
-This project is a small, concrete demo of a bigger idea:
+This project is a small, practical prototype that compares two approaches to analyzing data:
 
-> **Compare what we learn from pure LLM embeddings vs. what we learn from LLM + GNN link prediction on a graph.**
+1. **LLM-only embeddings** – text features are encoded using a sentence encoder or language model.  
+2. **LLM + GNN Link Prediction** – text features are combined with graph structure, and the GNN’s pre-final embeddings show how relationships change when structure is included.
 
-We use a **country borders graph** and **CIA World Factbook** text as a case study, but the pattern applies to any domain where you have:
+The goal is to make it easy to **prototype and visualize** how results differ when you use only text versus when you use **text + topology**.  
+This pattern works for any dataset where you have:
 
-- Text → encoded by an LLM / sentence encoder  
-- Structure → encoded as pre-final vectors from GNN Link Prediction model graph   
-- A need to see how **LLM-only** vs **LLM+GNN** change the “map” of similarities between items
+- **Nodes** with text features  
+- **Edges** representing relationships  
+- A need to compare *“LLM similarity”* vs. *“LLM + GNN similarity”*
+
+The example in this repository uses **country borders** and **CIA World Factbook** text because they are public and easy to follow.  
+But these datasets are **only for illustration** — you can replace them with your own graph, your own text features, and your own domain.
+
+In short:  
+This repo provides a reusable template for **testing LLM-only vs. LLM+GNN link prediction embeddings** and understanding how structure reshapes similarity maps in real data.
+
 
 ### Case study: countries as a graph
 
